@@ -13,6 +13,52 @@ window = Tk()
 window.title("Welcome to SpriD")
 window.geometry('700x400')
 
+# _____________________________ DEFINITIONS________________________________________________________________
+def about_click():
+    messagebox.showinfo('About Us', 'This product has been developed by Aakash Yadav and Aditya from IIT Tirupati, India')
+    img = ImageTk.PhotoImage(Image.open("spr2_2.png"))
+    panel = Label(messagebox, image = img)
+    panel.pack()
+# function to create new window # TODO: HELICAL SPRING  ******************************************
+def create_window():
+        top=Toplevel()
+        top.title("Helical Spring Design")
+        top.geometry('700x400')
+        btn = Button(top,text='HelicalSpring')
+        btn.grid(column=0,row=0)
+        menu = Menu(top)
+        # add submenu below three lines
+        new_item = Menu(menu,tearoff=0)
+        new_item.add_command(label='New',command=create_window)
+        new_item.add_command(label='Exit', command=top.quit)
+
+        menu.add_cascade(label='File',menu=new_item)
+        # menu.add_cascade(label='undo', menu=new_item)
+        menu.add_command(label='Save')
+        menu.add_command(label='About', command=about_click)
+        menu.add_command(label='Help')
+        top.config(menu=menu)
+# function to create new window # TODO: Belleville SPRING  ******************************************
+def create_window_2():
+        top=Toplevel()
+        top.title("Helical Spring Design")
+        top.geometry('700x400')
+        btn = Button(top,text='BellevilleSpring')
+        btn.grid(column=0,row=0)
+        menu = Menu(top)
+        # add submenu below three lines
+        new_item = Menu(menu,tearoff=0)
+        new_item.add_command(label='New',command=create_window)
+        new_item.add_command(label='Exit', command=top.quit)
+
+        menu.add_cascade(label='File',menu=new_item)
+        # menu.add_cascade(label='undo', menu=new_item)
+        menu.add_command(label='Save')
+        menu.add_command(label='About', command=about_click)
+        menu.add_command(label='Help')
+        top.config(menu=menu)
+#*****************************************************************************************************************************
+
 topFrame = Frame(window)
 topFrame.pack()
 bottomFrame = Frame(window)
@@ -25,8 +71,8 @@ lbl = Label(topFrame, text="Select the spring type you want to design",font=("Ar
 lbl2 = Label(bottomFrame, text="All rights reserved. Indian Institute of Technology Tirupati ",font=("Arial", 8))
 
 # button1 = Button(topFrame, text="Helical Spring", fg = "red")
-button1 = Button(topFrame, text="Helical Spring")
-button2 = Button(topFrame, text="Belleville Spring")
+button1 = Button(topFrame, text="Helical Spring", command=create_window)
+button2 = Button(topFrame, text="Belleville Spring", command=create_window_2)
 button3 = Button(topFrame, text="Torsion Spring")
 button4 = Button(topFrame, text="Constant Force Spring")
 
@@ -51,32 +97,24 @@ img4 = ImageTk.PhotoImage(Image.open("spr2_2.png"))
 panel4 = Label(imageFrame, image = img4)
 panel4.pack(side=LEFT)
 
-# adding an image
-# img = ImageTk.PhotoImage(Image.open("spr.jpeg"))
-# panel = Label(window, image = img)
-# panel.grid(column =1 ,row=1)
-
-#Menu
-def about_click():
-    messagebox.showinfo('About Us', 'This product has been developed by Aakash Yadav and Aditya from IIT Tirupati, India')
-# function to create new window # TODO: create the gui for the new window
-def create_window():
-        top=Toplevel()
-        top.title("Helical Spring Design")
-        top.geometry('700x400')
-        btnn = Button(top,text='DDDDD')
-        btnn.grid(column=0,row=0)
 # adding a menu
 menu = Menu(window)
-menu.add_command(label='File')
-menu.add_command(label='Save')
-menu.add_command(label='About', command=about_click)
 # add submenu below three lines
 new_item = Menu(menu,tearoff=0)
 new_item.add_command(label='New',command=create_window)
-# using onclick
-# new_item.add_command(label='New', command=clicked)
-menu.add_cascade(label='undo', menu=new_item)
+new_item.add_command(label='Exit', command=window.quit)
+new_item2 = Menu(menu,tearoff=0)
+new_item2.add_command(label='Helical',command=create_window)
+new_item2.add_command(label='Belleville', command=create_window_2)
+new_item2.add_command(label='Torsion')
+new_item2.add_command(label='Constant Force')
+menu.add_cascade(label='File',menu=new_item)
+menu.add_cascade(label='Start', menu=new_item2)
+menu.add_command(label='Save')
+menu.add_command(label='About', command=about_click)
+menu.add_command(label='Help')
+menu.add_command(label='Donate')
 window.config(menu=menu)
+
 
 window.mainloop()
