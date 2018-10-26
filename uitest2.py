@@ -7,10 +7,36 @@ from tkinter.ttk import *
 from tkinter import messagebox
 # for adding menu
 from tkinter import Menu
+# for Image
+from PIL import ImageTk, Image
+
 
 window = Tk()
 window.title("Welcome to Aakash Yadav's app")
 window.geometry('350x200')
+
+
+
+# gif1 = PhotoImage(file = 'spr.jpeg')
+# label1 = Label(image=gif1)
+# label1.image = gif1
+# label1.grid(row=1, column = 0, columnspan = 2, sticky=NW)
+
+# adding image
+# img = window.PhotoImage(Image.open("spr.jpeg"))
+# panel = window.Label(window, image = img)
+# panel.pack(side = "bottom", fill = "both", expand = "yes")
+# root = tk.Tk()
+
+img = ImageTk.PhotoImage(Image.open("spr.jpeg"))
+panel = Label(window, image = img)
+img.grid(row=1, column = 0, columnspan = 2, sticky=NW)
+
+# img.grid(column=1, row=0)
+
+# panel.pack(side = "bottom", fill = "both", expand = "yes")
+
+
 
 lbl = Label(window, text="Enter your name:")
 #lbl = Label(window, text="Hello", font=("Arial Bold", 50))
@@ -78,11 +104,15 @@ spin.grid(column=0,row=7)
 def about_click():
     messagebox.showinfo('About Us', 'This product has been developed by Aakash Yadav and Aditya from IIT Tirupati, India')
 
-# function to create new window
+# function to create new window # TODO: cv
 def create_window():
         top=Toplevel()
-        top.title("Welcome to Aakash Yadav's app")
+        top.title("Helical Spring Design")
         top.geometry('350x200')
+        btnn = Button(top,text='DDDDD')
+        btnn.grid(column=0,row=0)
+
+
 
 # adding a menu
 menu = Menu(window)
