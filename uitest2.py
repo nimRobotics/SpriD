@@ -16,24 +16,6 @@ window.title("Welcome to Aakash Yadav's app")
 window.geometry('350x200')
 
 
-
-# gif1 = PhotoImage(file = 'spr.jpeg')
-# label1 = Label(image=gif1)
-# label1.image = gif1
-# label1.grid(row=1, column = 0, columnspan = 2, sticky=NW)
-
-# adding image
-# img = window.PhotoImage(Image.open("spr.jpeg"))
-# panel = window.Label(window, image = img)
-# panel.pack(side = "bottom", fill = "both", expand = "yes")
-# root = tk.Tk()
-
-img = ImageTk.PhotoImage(Image.open("spr.jpeg"))
-panel = Label(window, image = img)
-img.grid(row=1, column = 0, columnspan = 2, sticky=NW)
-
-# img.grid(column=1, row=0)
-
 # panel.pack(side = "bottom", fill = "both", expand = "yes")
 
 

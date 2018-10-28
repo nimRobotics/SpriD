@@ -1,6 +1,6 @@
 # name = input("Enter a name: ")
 # print(name)
-def solutio(x,y,a):
+def interplt(x,y,a):
     if a in x:
         i=x.index(a)
         #print(i)
@@ -19,4 +19,4 @@ a = float(input("What is x? "))
 
 x = [1,2,3,4,5]
 y = [2,4,6,8,10]
-print(solutio(x,y,a))
+print(interplt(x,y,a))

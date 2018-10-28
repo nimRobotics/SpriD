@@ -14,6 +14,25 @@ window.title("Welcome to SpriD")
 window.geometry('700x400')
 
 # _____________________________ DEFINITIONS________________________________________________________________
+def interplt(x,y,a):
+    if a in x:
+        i=x.index(a)
+        lbl1.configure(text= y[i])
+        # return y[i]
+    else:
+        for j in range(len(x)):
+            if(a<x[j]):
+               x1=x[j-1]
+               x2=x[j]
+               y1=y[j-1]
+               y2=y[j]
+               m=(y2-y1)/(x2-x1)
+               c=m*(a-x1)+y1
+               lbl1.configure(text= c)
+               # return c
+x = [1,2,3,4,5]
+y = [2,4,6,8,10]
+# button1 = Button(topFrame, text="Calculate", command=lambda: interplt(x,y,float(txt1.get())))
 def about_click():
     messagebox.showinfo('About Us', 'This product has been developed by Aakash Yadav and Aditya from IIT Tirupati, India')
 # function to create new window # TODO: HELICAL SPRING  ******************************************
@@ -39,16 +58,75 @@ def create_window():
         menu.add_command(label='Help')
         top.config(menu=menu)
 
-        topFrame = Frame(top)
-        topFrame.pack()
-        bottomFrame = Frame(top)
-        bottomFrame.pack(side=BOTTOM)
+        headFrame = Frame(top)
+        toolbar1 = Frame(top)
+        toolbar2 = Frame(top)
+        toolbar3 = Frame(top)
+        calcFrame = Frame(top)
+        toolbar4 = Frame(top)
+        toolbar5 = Frame(top)
+        toolbar6 = Frame(top)
+        footFrame = Frame(top)
 
-        lbl = Label(topFrame, text="Aakash Yadav",font=("Arial Bold", 20))
-        lbl2 = Label(bottomFrame, text="Aakash Yadav",font=("Arial Bold", 20))
+        lbl = Label(headFrame, text="Input the given params",font=("Arial B",14))
+        lbl.pack(padx=2, pady=2)
 
-        lbl.pack()
-        lbl2.pack(side=LEFT)
+        headFrame.pack(side=TOP, fill=X, padx=4 )
+
+        lbl = Label(toolbar1, text="open", width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        txt = Entry(toolbar1,width=10)
+        txt.pack(side=LEFT, padx=2, pady=2)
+
+        lbl = Label(toolbar1, text="m/s^2",font=("Arial B", 10), width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        lbl = Label(toolbar1, text="open", width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        txt = Entry(toolbar1,width=10)
+        txt.pack(side=LEFT, padx=2, pady=2)
+
+        lbl = Label(toolbar1, text="m/s^2",font=("Arial B", 10), width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        toolbar1.pack(fill=X, padx=4 )
+
+        lbl = Label(toolbar2, text="open", width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        txt = Entry(toolbar2,width=10)
+        txt.pack(side=LEFT, padx=2, pady=2)
+
+        lbl = Label(toolbar2, text="MPa",font=("Arial B", 10), width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        toolbar2.pack(fill=X, padx=4)
+
+        lbl = Label(toolbar3, text="open", width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        txt = Entry(toolbar3,width=10)
+        txt.pack(side=LEFT, padx=2, pady=2)
+
+        lbl = Label(toolbar3, text="MPa",font=("Arial B", 10), width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        toolbar3.pack(fill=X, padx=4)
+
+        b = Button(calcFrame, text="Calculate")
+        b.pack()
+
+        calcFrame.pack(fill=X)
+
+        lbl = Label(toolbar4, text="length", width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        lbl = Label(toolbar4, text="20.28mm", width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        toolbar4.pack(side=BOTTOM)
 # function to create new window # TODO: Belleville SPRING  ******************************************
 def create_window_2():
         top=Toplevel()
