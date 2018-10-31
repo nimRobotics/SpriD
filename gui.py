@@ -7,7 +7,8 @@ from tkinter import messagebox
 from tkinter import Menu
 # for Image
 from PIL import ImageTk, Image
-
+# for hyperlinks
+import webbrowser
 
 window = Tk()
 window.title("Welcome to SpriD")
@@ -174,15 +175,33 @@ def create_window_about():
         menu.add_command(label='Help')
         top.config(menu=menu)
 
-        topFrame = Frame(top)
-        topFrame.pack()
-        # bottomFrame = Frame(top)
-        # bottomFrame.pack(side=BOTTOM)
-        img = ImageTk.PhotoImage(Image.open("spr2_2.png"))
-        panel = Label(topFrame, image = img)
-        panel.pack()
-        lbl = Label(topFrame, text="Aakash Yadav",font=("Arial Bold", 20))
-        lbl.pack(side=LEFT)
+        aakFrame = Frame(top)
+        aadFrame = Frame(top)
+
+        lbl = Label(aakFrame, text="Aakash Yadav", font=("Arial B", 16))
+        lbl.pack(padx=2, pady=2)
+
+        lbl = Label(aakFrame, wraplength = 600 , font=("Arial", 10),text="He is a budding mechanical engineer and is currently pursuing the same at Indian Institute of Technology Tirupati. He belives that consumer experience is most important pillar in developement of as product")
+        lbl.pack(padx=2, pady=2)
+
+        aakFrame.pack()
+        # TODO: add web hyperlink http://effbot.org/zone/tkinter-text-hyperlink.htm
+        # text.insert(INSERT, "this is a ")
+        # text.insert(INSERT, "link", hyperlink.add(click1))
+        # text.insert(INSERT, "\n\n")
+
+        lbl = Label(aadFrame, text="Aditya Kumar Choudhary", font=("Arial B", 16))
+        lbl.pack(padx=2, pady=2)
+
+        lbl = Label(aadFrame, wraplength = 600, font=("Arial", 10), text="He is a budding mechanical engineer and is currently pursuing the same at Indian Institute of Technology Tirupati")
+        lbl.pack(padx=2, pady=2)
+        # TODO: add Image
+        # img = ImageTk.PhotoImage(Image.open("spr2_2.png"))
+        # panel = Label(toolbar1, image = img)
+        # panel.pack(side=LEFT)
+        aadFrame.pack()
+
+
 #*****************************************************************************************************************************
 
 topFrame = Frame(window)
