@@ -32,7 +32,7 @@ txt.grid(column=1, row=0)
 # onclick type function for button
 def clicked():
     #lbl.configure(text="Button was clicked !!")
-    res = "Welcome to " + txt.get()
+    res = "Welcome \n to" + txt.get()
     lbl.configure(text= res)
 
 btn = Button(window, text="Click Me", command=clicked)

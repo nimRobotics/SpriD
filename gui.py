@@ -14,7 +14,7 @@ window = Tk()
 window.title("Welcome to SpriD")
 window.geometry('700x400')
 
-# _____________________________ DEFINITIONS________________________________________________________________
+# _____________________________ DEFINITIONS for interpolation________________________________________________________________
 def interplt(x,y,a):
     if a in x:
         i=x.index(a)
@@ -72,9 +72,9 @@ def create_window():
         lbl = Label(headFrame, text="Input the given params",font=("Arial B",14))
         lbl.pack(padx=2, pady=2)
 
-        headFrame.pack(side=TOP, fill=X, padx=4 )
+        headFrame.pack(side=TOP, fill=X, padx=4 , pady=20)
 
-        lbl = Label(toolbar1, text="open", width=6)
+        lbl = Label(toolbar1, text="Maximum force", width=15)
         lbl.pack(side=LEFT, padx=2, pady=2)
 
         txt = Entry(toolbar1,width=10)
@@ -83,7 +83,7 @@ def create_window():
         lbl = Label(toolbar1, text="m/s^2",font=("Arial B", 10), width=6)
         lbl.pack(side=LEFT, padx=2, pady=2)
 
-        lbl = Label(toolbar1, text="open", width=6)
+        lbl = Label(toolbar1, text="ymax", width=15)
         lbl.pack(side=LEFT, padx=2, pady=2)
 
         txt = Entry(toolbar1,width=10)
@@ -92,9 +92,9 @@ def create_window():
         lbl = Label(toolbar1, text="m/s^2",font=("Arial B", 10), width=6)
         lbl.pack(side=LEFT, padx=2, pady=2)
 
-        toolbar1.pack(fill=X, padx=4 )
+        toolbar1.pack(fill=X, padx=70 )
 
-        lbl = Label(toolbar2, text="open", width=6)
+        lbl = Label(toolbar2, text="Free Length", width=15)
         lbl.pack(side=LEFT, padx=2, pady=2)
 
         txt = Entry(toolbar2,width=10)
@@ -103,9 +103,18 @@ def create_window():
         lbl = Label(toolbar2, text="MPa",font=("Arial B", 10), width=6)
         lbl.pack(side=LEFT, padx=2, pady=2)
 
-        toolbar2.pack(fill=X, padx=4)
+        lbl = Label(toolbar2, text="End condition", width=15)
+        lbl.pack(side=LEFT, padx=2, pady=2)
 
-        lbl = Label(toolbar3, text="open", width=6)
+        txt = Entry(toolbar2,width=10)
+        txt.pack(side=LEFT, padx=2, pady=2)
+
+        lbl = Label(toolbar2, text="m/s^2",font=("Arial B", 10), width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        toolbar2.pack(fill=X, padx=70)
+
+        lbl = Label(toolbar3, text="Solid Length", width=15)
         lbl.pack(side=LEFT, padx=2, pady=2)
 
         txt = Entry(toolbar3,width=10)
@@ -114,12 +123,21 @@ def create_window():
         lbl = Label(toolbar3, text="MPa",font=("Arial B", 10), width=6)
         lbl.pack(side=LEFT, padx=2, pady=2)
 
-        toolbar3.pack(fill=X, padx=4)
+        lbl = Label(toolbar3, text="Material", width=15)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        txt = Entry(toolbar3,width=10)
+        txt.pack(side=LEFT, padx=2, pady=2)
+
+        lbl = Label(toolbar3, text="m/s^2",font=("Arial B", 10), width=6)
+        lbl.pack(side=LEFT, padx=2, pady=2)
+
+        toolbar3.pack(fill=X, padx=70)
 
         b = Button(calcFrame, text="Calculate")
         b.pack()
 
-        calcFrame.pack(fill=X)
+        calcFrame.pack(fill=X, pady=30)
 
         lbl = Label(toolbar4, text="length", width=6)
         lbl.pack(side=LEFT, padx=2, pady=2)
