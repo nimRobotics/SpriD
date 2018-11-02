@@ -9,6 +9,9 @@ from tkinter import Menu
 from PIL import ImageTk, Image
 # add hyperlinks
 import webbrowser
+# timestamp
+import time
+import datetime
 
 
 root = Tk()
@@ -27,14 +30,14 @@ A232 = [0.168, 169, 29.5, 11.2, 0.284, 3.1]
 A401 = [0.108, 202, 29.5, 11.2, 0.284, 4]
 
 def calcMain():
-    #def calcMain(fmax, ymax, freelength, solidlength, material, endCondition):
-# if inout in si
-    if var.get()==1:
+    # def calcMain(fmax, ymax, freelength, solidlength, material, endCondition):
+    # if inout in si
+    if var.get()==2:
         fmax=float(txt_fmax.get())/4.44822
         ymax=float(txt_ymax.get())/25.4
         freelength=float(txt_freelength.get())/25.4
         solidlength=float(txt_solidlength.get())/25.4
-    if var.get()==2:
+    if var.get()==1:
         fmax=float(txt_fmax.get())
         ymax=float(txt_ymax.get())
         freelength=float(txt_freelength.get())
@@ -150,11 +153,25 @@ def calcMain():
             # break
             # return D, d, Na, ls, lo, fom
             if counter==0:
-                xD=D
-                xd=d
+                if var.get()==2:
+                    xD=D*25.4
+                    xd=d*25.4
+                    xls=ls*25.4
+                    xlo=lo*25.4
+                if var.get()==1:
+                    xD=D
+                    xd=d
+                    xls=ls
+                    xlo=lo
+                    # fmax=float(txt_fmax.get())
+                    # ymax=float(txt_ymax.get())
+                    # freelength=float(txt_freelength.get())
+                    # solidlength=float(txt_solidlength.get())
+                # xD=D
+                # xd=d
                 xNa=Na
-                xls=ls
-                xlo=lo
+                # xls=ls
+                # xlo=lo
                 xfom=fom
             counter=counter+1
             f=open("res.txt", "a+")
@@ -164,22 +181,42 @@ def calcMain():
             f.write("ls %f\r\n" % ls)
             f.write("lo %f\r\n" % lo)
             f.write("Figure of merit %f\r\n" % fom)
-            f.write("_________________________\n")
+            ts = time.time()
+            st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+            f.write("____________"+st+"_____________\n")
             f.close()
         elif d>1:
             print("iteration stopped")
+            # messagebox.showinfo("Sorry! couldn't design the spring\nTIP:try different input")
             break
         d = d+0.001;
-    print(xD, xd, xNa, xls, xlo, xfom)
-    res = "Spring diameter " + str(xD) + "\nWire diameter "+str(xd)+"\nNa "+str(xNa)+"\nls "+str(xls)+"\nlo "+str(xlo)+"\nFigure of merit "+str(xfom)
+    # print(xD, xd, xNa, xls, xlo, xfom)
+    if var.get()==2:
+        res = "Spring diameter " + str(xD) + "mm\nWire diameter "+str(xd)+"mm\nNa "+str(xNa)+"\nls "+str(xls)+"mm\nlo "+str(xlo)+"mm\nFigure of merit "+str(xfom)
+    if var.get()==1:
+        res = "Spring diameter " + str(xD) + "inch\nWire diameter "+str(xd)+"inch\nNa "+str(xNa)+"\nls "+str(xls)+"inch\nlo "+str(xlo)+"inch\nFigure of merit "+str(xfom)
+
+    # res = "Spring diameter " + str(xD) + "\nWire diameter "+str(xd)+"\nNa "+str(xNa)+"\nls "+str(xls)+"\nlo "+str(xlo)+"\nFigure of merit "+str(xfom)
     lbl_res.configure(text= res)
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^from brain ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 def callback(event):
-    webbrowser.open_new(r"file://res.txt")
-    # /home/aakash/DME/res.txt
-    #
-    # "file://c:\test\test.csv"
+    webbrowser.open_new(r"file://file/home/aakash/DME/res.txt")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ radio units
+def rad_si():
+    lbl_ut_fmx.configure(text="N")
+    lbl_ut_ymx.configure(text="mm")
+    lbl_ut_freelen.configure(text="mm")
+    lbl_ut_solidlen.configure(text="mm")
+
+def rad_us():
+    lbl_ut_fmx.configure(text="lbf")
+    lbl_ut_ymx.configure(text="inch")
+    lbl_ut_freelen.configure(text="inch")
+    lbl_ut_solidlen.configure(text="inch")
+
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ radio units
+
 
 
 headFrame = Frame(root)
@@ -203,9 +240,10 @@ lbl.pack(side=LEFT, padx=2, pady=2)
 
 txt_fmax = Entry(toolbar1,width=10)
 txt_fmax.pack(side=LEFT, padx=2, pady=2)
+txt_fmax.focus()
 
-lbl = Label(toolbar1, text="m/s^2",font=("Arial B", 10), width=6)
-lbl.pack(side=LEFT, padx=2, pady=2)
+lbl_ut_fmx = Label(toolbar1, text="",font=("Arial B", 10), width=6)
+lbl_ut_fmx.pack(side=LEFT, padx=2, pady=2)
 
 lbl = Label(toolbar1, text="ymax", width=15)
 lbl.pack(side=LEFT, padx=2, pady=2)
@@ -213,8 +251,8 @@ lbl.pack(side=LEFT, padx=2, pady=2)
 txt_ymax = Entry(toolbar1,width=10)
 txt_ymax.pack(side=LEFT, padx=2, pady=2)
 
-lbl = Label(toolbar1, text="m/s^2",font=("Arial B", 10), width=6)
-lbl.pack(side=LEFT, padx=2, pady=2)
+lbl_ut_ymx = Label(toolbar1, text="",font=("Arial B", 10), width=6)
+lbl_ut_ymx.pack(side=LEFT, padx=2, pady=2)
 
 toolbar1.pack(fill=X, padx=70 )
 
@@ -224,8 +262,8 @@ lbl.pack(side=LEFT, padx=2, pady=2)
 txt_freelength = Entry(toolbar2,width=10)
 txt_freelength.pack(side=LEFT, padx=2, pady=2)
 
-lbl = Label(toolbar2, text="MPa",font=("Arial B", 10), width=6)
-lbl.pack(side=LEFT, padx=2, pady=2)
+lbl_ut_freelen = Label(toolbar2, text="",font=("Arial B", 10), width=6)
+lbl_ut_freelen.pack(side=LEFT, padx=2, pady=2)
 
 lbl = Label(toolbar2, text="End condition", width=15)
 lbl.pack(side=LEFT, padx=2, pady=2)
@@ -248,8 +286,8 @@ lbl.pack(side=LEFT, padx=2, pady=2)
 txt_solidlength = Entry(toolbar3,width=10)
 txt_solidlength.pack(side=LEFT, padx=2, pady=2)
 
-lbl = Label(toolbar3, text="MPa",font=("Arial B", 10), width=6)
-lbl.pack(side=LEFT, padx=2, pady=2)
+lbl_ut_solidlen = Label(toolbar3, text="",font=("Arial B", 10), width=6)
+lbl_ut_solidlen.pack(side=LEFT, padx=2, pady=2)
 
 lbl = Label(toolbar3, text="Material", width=15)
 lbl.pack(side=LEFT, padx=2, pady=2)
@@ -267,10 +305,10 @@ toolbar3.pack(fill=X, padx=70)
 lbl = Label(toolbar4, text="Output Units", width=15)
 lbl.pack(side=LEFT, padx=2, pady=2)
 
-rad1 = Radiobutton(toolbar4,text='US', value=1, variable=var)
+rad1 = Radiobutton(toolbar4,text='US', value=1, variable=var, command=rad_us)
 rad1.pack(side=LEFT, padx=2, pady=2)
 
-rad2 = Radiobutton(toolbar4,text='SI', value=2, variable=var)
+rad2 = Radiobutton(toolbar4,text='SI', value=2, variable=var, command=rad_si)
 rad2.pack(side=LEFT, padx=2, pady=2)
 
 toolbar4.pack(fill=X, padx=70)
