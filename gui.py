@@ -12,25 +12,38 @@ import webbrowser
 # timestamp
 import time
 import datetime
+from tkinter import *
+from tkinter import ttk
+# for using combobox
+from tkinter.ttk import *
+# for creating messagebox alert
+from tkinter import messagebox
+# for adding menu
+from tkinter import Menu
+# for Image
+from PIL import ImageTk, Image
+# add hyperlinks
+import webbrowser
+# timestamp
+import time
+import datetime
 
 window = Tk()
 window.title("Welcome to SpriD")
-window.geometry('700x400')
+window.geometry('700x450')
 
-#Radiobutton variable
+# Radiobutton variable
 var = IntVar()
 
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^from brain ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
 pi = 3.14159265;
 # material = [m, A(kpsi), E(mpsi), G(mpsi), density(ld/inch^3), relative cost]
 A228 = [0.145, 201, 29.5, 12, 0.284, 2.6]
-# # TODO: pg 510 diameter dependency
+# TODO: pg 510 diameter dependency
 A229 = [0.147, 147, 30, 11.5, 0.284, 1.3]
 A227 = [0.190, 140, 28.8, 11.7, 0.284, 1.0]
 A232 = [0.168, 169, 29.5, 11.2, 0.284, 3.1]
 A401 = [0.108, 202, 29.5, 11.2, 0.284, 4]
-
-
 
 # _____________________________ DEFINITIONS for interpolation________________________________________________________________
 def interplt(x,y,a):
@@ -58,7 +71,7 @@ def about_click():
 def create_window():
         top=Toplevel()
         top.title("Helical Spring Design")
-        top.geometry('700x400')
+        top.geometry('700x450')
         #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   DESIGN.py DEFINITIONS
         def calcMain():
             # def calcMain(fmax, ymax, freelength, solidlength, material, endCondition):
@@ -68,13 +81,13 @@ def create_window():
                 ymax=float(txt_ymax.get())/25.4
                 freelength=float(txt_freelength.get())/25.4
                 solidlength=float(txt_solidlength.get())/25.4
+            # if input in US
             if var.get()==1:
                 fmax=float(txt_fmax.get())
                 ymax=float(txt_ymax.get())
                 freelength=float(txt_freelength.get())
                 solidlength=float(txt_solidlength.get())
-
-
+            #initial guess for 'd'
             d=0.001
             counter = 0
             while d>0:
@@ -268,16 +281,20 @@ def create_window():
         menu.add_command(label='Help')
         top.config(menu=menu)
 
-        headFrame = Frame(top)
-        toolbar1 = Frame(top)
-        toolbar2 = Frame(top)
-        toolbar3 = Frame(top)
-        toolbar4 = Frame(top)
-        calcFrame = Frame(top)
-        toolbar5 = Frame(top)
-        toolbar6 = Frame(top)
-        toolbar7 = Frame(top)
-        footFrame = Frame(top)
+        note = ttk.Notebook(top)
+        tab1 = ttk.Frame(note)
+
+
+        headFrame = Frame(tab1)
+        toolbar1 = Frame(tab1)
+        toolbar2 = Frame(tab1)
+        toolbar3 = Frame(tab1)
+        toolbar4 = Frame(tab1)
+        calcFrame = Frame(tab1)
+        toolbar5 = Frame(tab1)
+        toolbar6 = Frame(tab1)
+        toolbar7 = Frame(tab1)
+        footFrame = Frame(tab1)
 
         lbl = Label(headFrame, text="Input the given params",font=("Arial B",14))
         lbl.pack(padx=2, pady=2)
@@ -346,9 +363,6 @@ def create_window():
         combo_mat.current(1) #set the selected item
         combo_mat.pack(side=LEFT, padx=2, pady=2)
 
-        # lbl = Label(toolbar3, text="m/s^2",font=("Arial B", 10), width=6)
-        # lbl.pack(side=LEFT, padx=2, pady=2)
-
         toolbar3.pack(fill=X, padx=70)
 
         lbl = Label(toolbar4, text="Output Units", width=15)
@@ -371,19 +385,28 @@ def create_window():
 
         link = Label(toolbar5, text="(more)", cursor="hand2")
         link.pack()
-        link.bind("<Button-1>", callback)
+        link.bind("<Button-1>",callback)
 
         lbl_res = Label(toolbar5, text="", width=40)
         lbl_res.pack(padx=2, pady=2)
 
-        toolbar5.pack()
+        toolbar5.pack(side=BOTTOM)
+
+
+        note.add(tab1, text = "Spring design for Static load",compound=TOP)
+        tab2 = ttk.Frame(note)
+        lbl = Label(tab2, text="gf")
+        lbl.pack(side = BOTTOM)
+        note.add(tab2, text = "Spring design for Dynamic load")
+        note.pack()
 # function to create new window # TODO: Belleville SPRING  ******************************************
 def create_window_2():
         top=Toplevel()
-        top.title("Helical Spring Design")
-        top.geometry('700x400')
-        btn = Button(top,text='BellevilleSpring')
-        btn.grid(column=0,row=0)
+        top.title("SpriD")
+        top.geometry('700x450')
+        lbl = Label(top, text="Come back soon !",font=("Arial Bold", 30))
+        # button1.pack(fill=X,pady=5)
+        lbl.grid(column=0,row=0, padx = 160, pady = 120)
         menu = Menu(top)
         # add submenu below three lines
         new_item = Menu(menu,tearoff=0)
@@ -405,7 +428,7 @@ def create_window_about():
 
         top=Toplevel()
         top.title("About Us ")
-        top.geometry('700x400')
+        top.geometry('700x450')
 
         menu = Menu(top)
         # add submenu below three lines
@@ -425,29 +448,29 @@ def create_window_about():
         top.config(menu=menu)
 
         aakFrame = Frame(top)
+        imageAak = Frame(top)
         aadFrame = Frame(top)
 
-        lbl = Label(aakFrame, text="Aakash Yadav", font=("Arial B", 16))
+        lbl = Label(aakFrame, text="Mr. Aakash Yadav", font=("Arial B", 16))
+        lbl.pack(padx=2, pady=2)
+
+        lbl = Label(aakFrame, wraplength = 600 , font=("Arial", 12),text="He is a tech enthusiast and is associated with app development (UI/UX), IoT, Robotics to name a few. He is currently pursuing Mechanical Engineering at Indian Institute of Technology Tirupati. He belives that consumer experience is most important pillar in developement of a product")
         lbl.pack(padx=2, pady=2)
         aakFrame.pack()
 
-        lbl = Label(aadFrame, wraplength = 600 , font=("Arial", 10),text="He is a tech enthusiast and is associated with app development (UI/UX), IoT, Robotics to name a few. He is currently pursuing Mechanical Engineering at Indian Institute of Technology Tirupati. He belives that consumer experience is most important pillar in developement of a product")
-        lbl.pack(padx=2, pady=2)
-        aadFrame.pack()
-
-        lbl = Label(aadFrame, text="Aditya Kumar Choudhary", font=("Arial B", 16))
-        lbl.pack(padx=2, pady=2)
-
-        lbl = Label(aadFrame, wraplength = 600, font=("Arial", 10), text="He is a budding mechanical engineer and is currently pursuing the same at Indian Institute of Technology Tirupati")
-        lbl.pack(padx=2, pady=2)
         # TODO: add Image
-        # img = ImageTk.PhotoImage(Image.open("spr2_2.png"))
-        # panel = Label(toolbar1, image = img)
-        # panel.pack(side=LEFT)
+        img = ImageTk.PhotoImage(Image.open("spr2_2.png"))
+        panel = Label(imageAak, image = img)
+        panel.pack()
+        imageAak.pack()
+
+        lbl = Label(aadFrame, text="Mr. Aditya Kumar Choudhary", font=("Arial B", 16))
+        lbl.pack(padx=2, pady=2)
+
+        lbl = Label(aadFrame, wraplength = 600 , font=("Arial", 12),text="He is currently pursuing B.Tech in Mechanical engineering from IIT Tirupati. He is very interested in physics and specially in mechanics. He is also a gaming enthusiast and play a lot of e-games. Currently his favourite game is Dota 2. After his under-grad he wishes to go for a research oriented job in mechanical engineering. He is currently doing a research project with prof. Shree Ram Valluri of University of Western Ontario, Canada.")
+        lbl.pack(padx=2, pady=2)
         aadFrame.pack()
-
 #*****************************************************************************************************************************
-
 topFrame = Frame(window)
 topFrame.pack()
 bottomFrame = Frame(window)
@@ -455,14 +478,13 @@ bottomFrame.pack(side=BOTTOM)
 imageFrame = Frame(window)
 imageFrame.pack(side= BOTTOM)
 
-
 lbl = Label(topFrame, text="Select the spring type you want to design",font=("Arial Bold", 20))
 lbl2 = Label(bottomFrame, text="All rights reserved. Indian Institute of Technology Tirupati ",font=("Arial", 8))
 # button1 = Button(topFrame, text="Helical Spring", fg = "red")
 button1 = Button(topFrame, text="Helical Spring", command=create_window)
 button2 = Button(topFrame, text="Belleville Spring", command=create_window_2)
-button3 = Button(topFrame, text="Torsion Spring")
-button4 = Button(topFrame, text="Constant Force Spring")
+button3 = Button(topFrame, text="Torsion Spring", command = create_window_2)
+button4 = Button(topFrame, text="Constant Force Spring", command = create_window_2)
 
 lbl.pack(side=TOP,pady=20)
 lbl2.pack()
@@ -478,7 +500,7 @@ panel.pack(side=LEFT)
 img2 = ImageTk.PhotoImage(Image.open("spr3_3.png"))
 panel2 = Label(imageFrame, image = img2)
 panel2.pack(side=LEFT)
-img3 = ImageTk.PhotoImage(Image.open("spr2_2.png"))
+img3 = ImageTk.PhotoImage(Image.open("1.png"))
 panel3 = Label(imageFrame, image = img3)
 panel3.pack(side=LEFT)
 img4 = ImageTk.PhotoImage(Image.open("spr2_2.png"))
@@ -503,6 +525,5 @@ menu.add_command(label='Save')
 menu.add_command(label='About', command=create_window_about)
 menu.add_command(label='Help')
 window.config(menu=menu)
-
 
 window.mainloop()

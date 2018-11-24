@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 # for using combobox
 from tkinter.ttk import *
 # for creating messagebox alert
@@ -14,8 +15,8 @@ import time
 import datetime
 
 root = Tk()
-#Radiobutton variable
 var = IntVar()
+#__________________________________________________________________________________________________
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^from brain ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
 pi = 3.14159265;
 # TODO: pg 510 diameter dependency
@@ -215,16 +216,19 @@ def rad_us():
     lbl_ut_solidlen.configure(text="inch")
     toolbar1.pack(fill=X, padx=70 )
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ radio @ SI units toggle
-headFrame = Frame(root)
-toolbar1 = Frame(root)
-toolbar2 = Frame(root)
-toolbar3 = Frame(root)
-toolbar4 = Frame(root)
-calcFrame = Frame(root)
-toolbar5 = Frame(root)
-toolbar6 = Frame(root)
-toolbar7 = Frame(root)
-footFrame = Frame(root)
+note = ttk.Notebook(root)
+tab1 = ttk.Frame(note)
+
+headFrame = Frame(tab1)
+toolbar1 = Frame(tab1)
+toolbar2 = Frame(tab1)
+toolbar3 = Frame(tab1)
+toolbar4 = Frame(tab1)
+calcFrame = Frame(tab1)
+toolbar5 = Frame(tab1)
+toolbar6 = Frame(tab1)
+toolbar7 = Frame(tab1)
+footFrame = Frame(tab1)
 
 lbl = Label(headFrame, text="Input the given params",font=("Arial B",14))
 lbl.pack(padx=2, pady=2)
@@ -315,11 +319,18 @@ lbl.pack(padx=2, pady=2)
 
 link = Label(toolbar5, text="(more)", cursor="hand2")
 link.pack()
-link.bind("<Button-1>", callback)
+link.bind("<Button-1>",callback)
 
 lbl_res = Label(toolbar5, text="", width=40)
 lbl_res.pack(padx=2, pady=2)
 
 toolbar5.pack(side=BOTTOM)
 
-mainloop()
+note.add(tab1, text = "Tab One",compound=TOP)
+tab2 = ttk.Frame(note)
+lbl = Label(tab2, text="gf")
+lbl.pack(side = BOTTOM)
+note.add(tab2, text = "Tab Two")
+note.pack()
+
+root.mainloop()
