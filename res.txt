@@ -614,3 +614,598 @@ ls 0.705345
 lo 3.005345
 Figure of merit -0.390994
 ____________2018-11-24 23:47:49_____________
+Wire diameter 0.078000
+Spring diameter 0.778656
+Na 11.515694
+ls 0.976224
+lo 3.276224
+Figure of merit -0.380367
+____________2018-11-25 09:58:46_____________
+Wire diameter 0.079000
+Spring diameter 0.810281
+Na 10.753494
+ls 0.928526
+lo 3.228526
+Figure of merit -0.381303
+____________2018-11-25 09:58:46_____________
+Wire diameter 0.080000
+Spring diameter 0.842679
+Na 10.053593
+ls 0.884287
+lo 3.184287
+Figure of merit -0.382436
+____________2018-11-25 09:58:46_____________
+Wire diameter 0.081000
+Spring diameter 0.875859
+Na 9.409912
+ls 0.843203
+lo 3.143203
+Figure of merit -0.383764
+____________2018-11-25 09:58:46_____________
+Wire diameter 0.082000
+Spring diameter 0.909829
+Na 8.817060
+ls 0.804999
+lo 3.104999
+Figure of merit -0.385285
+____________2018-11-25 09:58:46_____________
+Wire diameter 0.083000
+Spring diameter 0.944598
+Na 8.270252
+ls 0.769431
+lo 3.069431
+Figure of merit -0.386997
+____________2018-11-25 09:58:46_____________
+Wire diameter 0.084000
+Spring diameter 0.980175
+Na 7.765223
+ls 0.736279
+lo 3.036279
+Figure of merit -0.388900
+____________2018-11-25 09:58:46_____________
+Wire diameter 0.085000
+Spring diameter 1.016568
+Na 7.298171
+ls 0.705345
+lo 3.005345
+Figure of merit -0.390994
+____________2018-11-25 09:58:46_____________
+Wire diameter 0.078000
+Spring diameter 0.778656
+Na 11.515694
+ls 0.976224
+lo 3.276224
+Figure of merit -0.380367
+____________2018-11-25 10:08:28_____________
+Wire diameter 0.079000
+Spring diameter 0.810281
+Na 10.753494
+ls 0.928526
+lo 3.228526
+Figure of merit -0.381303
+____________2018-11-25 10:08:28_____________
+Wire diameter 0.080000
+Spring diameter 0.842679
+Na 10.053593
+ls 0.884287
+lo 3.184287
+Figure of merit -0.382436
+____________2018-11-25 10:08:28_____________
+Wire diameter 0.081000
+Spring diameter 0.875859
+Na 9.409912
+ls 0.843203
+lo 3.143203
+Figure of merit -0.383764
+____________2018-11-25 10:08:28_____________
+Wire diameter 0.082000
+Spring diameter 0.909829
+Na 8.817060
+ls 0.804999
+lo 3.104999
+Figure of merit -0.385285
+____________2018-11-25 10:08:28_____________
+Wire diameter 0.083000
+Spring diameter 0.944598
+Na 8.270252
+ls 0.769431
+lo 3.069431
+Figure of merit -0.386997
+____________2018-11-25 10:08:28_____________
+Wire diameter 0.084000
+Spring diameter 0.980175
+Na 7.765223
+ls 0.736279
+lo 3.036279
+Figure of merit -0.388900
+____________2018-11-25 10:08:28_____________
+Wire diameter 0.085000
+Spring diameter 1.016568
+Na 7.298171
+ls 0.705345
+lo 3.005345
+Figure of merit -0.390994
+____________2018-11-25 10:08:28_____________
+Wire diameter 0.078000
+Spring diameter 0.778656
+Na 11.515694
+ls 0.976224
+lo 3.276224
+Figure of merit -0.380367
+____________2018-11-25 10:21:13_____________
+Wire diameter 0.079000
+Spring diameter 0.810281
+Na 10.753494
+ls 0.928526
+lo 3.228526
+Figure of merit -0.381303
+____________2018-11-25 10:21:13_____________
+Wire diameter 0.080000
+Spring diameter 0.842679
+Na 10.053593
+ls 0.884287
+lo 3.184287
+Figure of merit -0.382436
+____________2018-11-25 10:21:13_____________
+Wire diameter 0.081000
+Spring diameter 0.875859
+Na 9.409912
+ls 0.843203
+lo 3.143203
+Figure of merit -0.383764
+____________2018-11-25 10:21:13_____________
+Wire diameter 0.082000
+Spring diameter 0.909829
+Na 8.817060
+ls 0.804999
+lo 3.104999
+Figure of merit -0.385285
+____________2018-11-25 10:21:13_____________
+Wire diameter 0.083000
+Spring diameter 0.944598
+Na 8.270252
+ls 0.769431
+lo 3.069431
+Figure of merit -0.386997
+____________2018-11-25 10:21:13_____________
+Wire diameter 0.084000
+Spring diameter 0.980175
+Na 7.765223
+ls 0.736279
+lo 3.036279
+Figure of merit -0.388900
+____________2018-11-25 10:21:13_____________
+Wire diameter 0.085000
+Spring diameter 1.016568
+Na 7.298171
+ls 0.705345
+lo 3.005345
+Figure of merit -0.390994
+____________2018-11-25 10:21:13_____________
+Wire diameter 0.078000
+Spring diameter 0.778656
+Na 11.515694
+ls 0.976224
+lo 3.276224
+Figure of merit -0.380367
+____________2018-11-25 10:21:55_____________
+Wire diameter 0.079000
+Spring diameter 0.810281
+Na 10.753494
+ls 0.928526
+lo 3.228526
+Figure of merit -0.381303
+____________2018-11-25 10:21:55_____________
+Wire diameter 0.080000
+Spring diameter 0.842679
+Na 10.053593
+ls 0.884287
+lo 3.184287
+Figure of merit -0.382436
+____________2018-11-25 10:21:55_____________
+Wire diameter 0.081000
+Spring diameter 0.875859
+Na 9.409912
+ls 0.843203
+lo 3.143203
+Figure of merit -0.383764
+____________2018-11-25 10:21:55_____________
+Wire diameter 0.082000
+Spring diameter 0.909829
+Na 8.817060
+ls 0.804999
+lo 3.104999
+Figure of merit -0.385285
+____________2018-11-25 10:21:55_____________
+Wire diameter 0.083000
+Spring diameter 0.944598
+Na 8.270252
+ls 0.769431
+lo 3.069431
+Figure of merit -0.386997
+____________2018-11-25 10:21:55_____________
+Wire diameter 0.084000
+Spring diameter 0.980175
+Na 7.765223
+ls 0.736279
+lo 3.036279
+Figure of merit -0.388900
+____________2018-11-25 10:21:55_____________
+Wire diameter 0.085000
+Spring diameter 1.016568
+Na 7.298171
+ls 0.705345
+lo 3.005345
+Figure of merit -0.390994
+____________2018-11-25 10:21:55_____________
+Wire diameter 0.078000
+Spring diameter 0.778656
+Na 11.515694
+ls 0.976224
+lo 3.276224
+Figure of merit -0.380367
+____________2018-11-25 10:29:01_____________
+Wire diameter 0.079000
+Spring diameter 0.810281
+Na 10.753494
+ls 0.928526
+lo 3.228526
+Figure of merit -0.381303
+____________2018-11-25 10:29:01_____________
+Wire diameter 0.080000
+Spring diameter 0.842679
+Na 10.053593
+ls 0.884287
+lo 3.184287
+Figure of merit -0.382436
+____________2018-11-25 10:29:01_____________
+Wire diameter 0.081000
+Spring diameter 0.875859
+Na 9.409912
+ls 0.843203
+lo 3.143203
+Figure of merit -0.383764
+____________2018-11-25 10:29:01_____________
+Wire diameter 0.082000
+Spring diameter 0.909829
+Na 8.817060
+ls 0.804999
+lo 3.104999
+Figure of merit -0.385285
+____________2018-11-25 10:29:01_____________
+Wire diameter 0.083000
+Spring diameter 0.944598
+Na 8.270252
+ls 0.769431
+lo 3.069431
+Figure of merit -0.386997
+____________2018-11-25 10:29:01_____________
+Wire diameter 0.084000
+Spring diameter 0.980175
+Na 7.765223
+ls 0.736279
+lo 3.036279
+Figure of merit -0.388900
+____________2018-11-25 10:29:01_____________
+Wire diameter 0.085000
+Spring diameter 1.016568
+Na 7.298171
+ls 0.705345
+lo 3.005345
+Figure of merit -0.390994
+____________2018-11-25 10:29:01_____________
+Wire diameter 0.078000
+Spring diameter 0.778656
+Na 11.515694
+ls 0.976224
+lo 3.276224
+Figure of merit -0.380367
+____________2018-11-25 10:29:48_____________
+Wire diameter 0.079000
+Spring diameter 0.810281
+Na 10.753494
+ls 0.928526
+lo 3.228526
+Figure of merit -0.381303
+____________2018-11-25 10:29:48_____________
+Wire diameter 0.080000
+Spring diameter 0.842679
+Na 10.053593
+ls 0.884287
+lo 3.184287
+Figure of merit -0.382436
+____________2018-11-25 10:29:48_____________
+Wire diameter 0.081000
+Spring diameter 0.875859
+Na 9.409912
+ls 0.843203
+lo 3.143203
+Figure of merit -0.383764
+____________2018-11-25 10:29:48_____________
+Wire diameter 0.082000
+Spring diameter 0.909829
+Na 8.817060
+ls 0.804999
+lo 3.104999
+Figure of merit -0.385285
+____________2018-11-25 10:29:48_____________
+Wire diameter 0.083000
+Spring diameter 0.944598
+Na 8.270252
+ls 0.769431
+lo 3.069431
+Figure of merit -0.386997
+____________2018-11-25 10:29:48_____________
+Wire diameter 0.084000
+Spring diameter 0.980175
+Na 7.765223
+ls 0.736279
+lo 3.036279
+Figure of merit -0.388900
+____________2018-11-25 10:29:48_____________
+Wire diameter 0.085000
+Spring diameter 1.016568
+Na 7.298171
+ls 0.705345
+lo 3.005345
+Figure of merit -0.390994
+____________2018-11-25 10:29:48_____________
+Wire diameter 0.076000
+Spring diameter 0.761402
+Na 11.685220
+ls 0.964077
+lo 3.264077
+Figure of merit -0.357892
+____________2018-11-25 10:30:00_____________
+Wire diameter 0.077000
+Spring diameter 0.793139
+Na 10.892813
+ls 0.915747
+lo 3.215747
+Figure of merit -0.358780
+____________2018-11-25 10:30:00_____________
+Wire diameter 0.078000
+Spring diameter 0.825671
+Na 10.166728
+ls 0.871005
+lo 3.171005
+Figure of merit -0.359862
+____________2018-11-25 10:30:00_____________
+Wire diameter 0.079000
+Spring diameter 0.859009
+Na 9.500340
+ls 0.829527
+lo 3.129527
+Figure of merit -0.361134
+____________2018-11-25 10:30:00_____________
+Wire diameter 0.080000
+Spring diameter 0.893162
+Na 8.887795
+ls 0.791024
+lo 3.091024
+Figure of merit -0.362596
+____________2018-11-25 10:30:00_____________
+Wire diameter 0.081000
+Spring diameter 0.928138
+Na 8.323906
+ls 0.755236
+lo 3.055236
+Figure of merit -0.364245
+____________2018-11-25 10:30:00_____________
+Wire diameter 0.082000
+Spring diameter 0.963946
+Na 7.804071
+ls 0.721934
+lo 3.021934
+Figure of merit -0.366081
+____________2018-11-25 10:30:00_____________
+Wire diameter 0.076000
+Spring diameter 0.761402
+Na 11.685220
+ls 0.964077
+lo 3.264077
+Figure of merit -0.357892
+____________2018-11-25 10:30:06_____________
+Wire diameter 0.077000
+Spring diameter 0.793139
+Na 10.892813
+ls 0.915747
+lo 3.215747
+Figure of merit -0.358780
+____________2018-11-25 10:30:06_____________
+Wire diameter 0.078000
+Spring diameter 0.825671
+Na 10.166728
+ls 0.871005
+lo 3.171005
+Figure of merit -0.359862
+____________2018-11-25 10:30:06_____________
+Wire diameter 0.079000
+Spring diameter 0.859009
+Na 9.500340
+ls 0.829527
+lo 3.129527
+Figure of merit -0.361134
+____________2018-11-25 10:30:06_____________
+Wire diameter 0.080000
+Spring diameter 0.893162
+Na 8.887795
+ls 0.791024
+lo 3.091024
+Figure of merit -0.362596
+____________2018-11-25 10:30:06_____________
+Wire diameter 0.081000
+Spring diameter 0.928138
+Na 8.323906
+ls 0.755236
+lo 3.055236
+Figure of merit -0.364245
+____________2018-11-25 10:30:06_____________
+Wire diameter 0.082000
+Spring diameter 0.963946
+Na 7.804071
+ls 0.721934
+lo 3.021934
+Figure of merit -0.366081
+____________2018-11-25 10:30:06_____________
+Wire diameter 0.078000
+Spring diameter 0.778656
+Na 11.515694
+ls 0.976224
+lo 3.276224
+Figure of merit -0.380367
+____________2018-11-25 10:37:42_____________
+Wire diameter 0.079000
+Spring diameter 0.810281
+Na 10.753494
+ls 0.928526
+lo 3.228526
+Figure of merit -0.381303
+____________2018-11-25 10:37:42_____________
+Wire diameter 0.080000
+Spring diameter 0.842679
+Na 10.053593
+ls 0.884287
+lo 3.184287
+Figure of merit -0.382436
+____________2018-11-25 10:37:42_____________
+Wire diameter 0.081000
+Spring diameter 0.875859
+Na 9.409912
+ls 0.843203
+lo 3.143203
+Figure of merit -0.383764
+____________2018-11-25 10:37:42_____________
+Wire diameter 0.082000
+Spring diameter 0.909829
+Na 8.817060
+ls 0.804999
+lo 3.104999
+Figure of merit -0.385285
+____________2018-11-25 10:37:42_____________
+Wire diameter 0.083000
+Spring diameter 0.944598
+Na 8.270252
+ls 0.769431
+lo 3.069431
+Figure of merit -0.386997
+____________2018-11-25 10:37:42_____________
+Wire diameter 0.084000
+Spring diameter 0.980175
+Na 7.765223
+ls 0.736279
+lo 3.036279
+Figure of merit -0.388900
+____________2018-11-25 10:37:42_____________
+Wire diameter 0.085000
+Spring diameter 1.016568
+Na 7.298171
+ls 0.705345
+lo 3.005345
+Figure of merit -0.390994
+____________2018-11-25 10:37:42_____________
+Wire diameter 0.078000
+Spring diameter 0.778656
+Na 11.515694
+ls 0.976224
+lo 3.276224
+Figure of merit -0.380367
+____________2018-11-25 10:47:33_____________
+Wire diameter 0.079000
+Spring diameter 0.810281
+Na 10.753494
+ls 0.928526
+lo 3.228526
+Figure of merit -0.381303
+____________2018-11-25 10:47:33_____________
+Wire diameter 0.080000
+Spring diameter 0.842679
+Na 10.053593
+ls 0.884287
+lo 3.184287
+Figure of merit -0.382436
+____________2018-11-25 10:47:33_____________
+Wire diameter 0.081000
+Spring diameter 0.875859
+Na 9.409912
+ls 0.843203
+lo 3.143203
+Figure of merit -0.383764
+____________2018-11-25 10:47:33_____________
+Wire diameter 0.082000
+Spring diameter 0.909829
+Na 8.817060
+ls 0.804999
+lo 3.104999
+Figure of merit -0.385285
+____________2018-11-25 10:47:33_____________
+Wire diameter 0.083000
+Spring diameter 0.944598
+Na 8.270252
+ls 0.769431
+lo 3.069431
+Figure of merit -0.386997
+____________2018-11-25 10:47:33_____________
+Wire diameter 0.084000
+Spring diameter 0.980175
+Na 7.765223
+ls 0.736279
+lo 3.036279
+Figure of merit -0.388900
+____________2018-11-25 10:47:33_____________
+Wire diameter 0.085000
+Spring diameter 1.016568
+Na 7.298171
+ls 0.705345
+lo 3.005345
+Figure of merit -0.390994
+____________2018-11-25 10:47:33_____________
+Wire diameter 0.074000
+Spring diameter 0.745285
+Na 11.821316
+ls 0.948777
+lo 3.248777
+Figure of merit -0.335685
+____________2018-11-25 10:47:49_____________
+Wire diameter 0.075000
+Spring diameter 0.777182
+Na 10.999716
+ls 0.899979
+lo 3.199979
+Figure of merit -0.336534
+____________2018-11-25 10:47:49_____________
+Wire diameter 0.076000
+Spring diameter 0.809902
+Na 10.248548
+ls 0.854890
+lo 3.154890
+Figure of merit -0.337574
+____________2018-11-25 10:47:49_____________
+Wire diameter 0.077000
+Spring diameter 0.843453
+Na 9.560613
+ls 0.813167
+lo 3.113167
+Figure of merit -0.338801
+____________2018-11-25 10:47:49_____________
+Wire diameter 0.078000
+Spring diameter 0.877845
+Na 8.929564
+ls 0.774506
+lo 3.074506
+Figure of merit -0.340213
+____________2018-11-25 10:47:49_____________
+Wire diameter 0.079000
+Spring diameter 0.913088
+Na 8.349799
+ls 0.738634
+lo 3.038634
+Figure of merit -0.341808
+____________2018-11-25 10:47:49_____________
+Wire diameter 0.080000
+Spring diameter 0.949191
+Na 7.816355
+ls 0.705308
+lo 3.005308
+Figure of merit -0.343586
+____________2018-11-25 10:47:49_____________
