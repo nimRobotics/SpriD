@@ -27,6 +27,10 @@ import webbrowser
 # timestamp
 import time
 import datetime
+import matplotlib.pyplot as plt
+
+from sympy import *
+x = Symbol('x')
 
 window = Tk()
 window.title("Welcome to SpriD")
@@ -35,6 +39,9 @@ window.geometry('700x450')
 # Radiobutton variable
 var = IntVar()
 var_d = IntVar()
+d_ar = []
+xD=0
+fom_ar = []
 
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^from brain ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
 pi = 3.14159265;
@@ -47,25 +54,25 @@ A232 = [0.168, 169, 29.5, 11.2, 0.284, 3.1]
 A401 = [0.108, 202, 29.5, 11.2, 0.284, 4]
 
 # _____________________________ DEFINITIONS for interpolation________________________________________________________________
-def interplt(x,y,a):
-    if a in x:
-        i=x.index(a)
-        lbl1.configure(text= y[i])
-        # return y[i]
-    else:
-        for j in range(len(x)):
-            if(a<x[j]):
-               x1=x[j-1]
-               x2=x[j]
-               y1=y[j-1]
-               y2=y[j]
-               m=(y2-y1)/(x2-x1)
-               c=m*(a-x1)+y1
-               lbl1.configure(text= c)
-               # return c
-x = [1,2,3,4,5]
-y = [2,4,6,8,10]
-# button1 = Button(topFrame, text="Calculate", command=lambda: interplt(x,y,float(txt1.get())))
+# def interplt(x,y,a):
+#     if a in x:
+#         i=x.index(a)
+#         lbl1.configure(text= y[i])
+#         # return y[i]
+#     else:
+#         for j in range(len(x)):
+#             if(a<x[j]):
+#                x1=x[j-1]
+#                x2=x[j]
+#                y1=y[j-1]
+#                y2=y[j]
+#                m=(y2-y1)/(x2-x1)
+#                c=m*(a-x1)+y1
+#                lbl1.configure(text= c)
+#                # return c
+# x = [1,2,3,4,5]
+# y = [2,4,6,8,10]
+# # button1 = Button(topFrame, text="Calculate", command=lambda: interplt(x,y,float(txt1.get())))
 def about_click():
     messagebox.showinfo('About Us', 'This product has been developed by Aakash Yadav and Aditya from IIT Tirupati, India')
 # function to create new window # TODO: HELICAL SPRING  ******************************************
@@ -73,8 +80,9 @@ def create_window():
         top=Toplevel()
         top.title("Helical Spring Design")
         top.geometry('700x450')
-        #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   DESIGN.py DEFINITIONS
+        #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   DESIGN.py DEFINITIONS function for static load
         def calcMain():
+            flag=0
             # def calcMain(fmax, ymax, freelength, solidlength, material, endCondition):
             # if inout in si
             if var.get()==2:
@@ -83,11 +91,14 @@ def create_window():
                 freelength=float(txt_freelength.get())/25.4
                 solidlength=float(txt_solidlength.get())/25.4
             # if input in US
-            if var.get()==1:
+            elif var.get()==1:
                 fmax=float(txt_fmax.get())
                 ymax=float(txt_ymax.get())
                 freelength=float(txt_freelength.get())
                 solidlength=float(txt_solidlength.get())
+            else:
+                messagebox.showinfo('Error 207!', 'Please select the unit')
+
             #initial guess for 'd'
             d=0.001
             counter = 0
@@ -199,26 +210,34 @@ def create_window():
                     # return D, d, Na, ls, lo, fom
                     if counter==0:
                         if var.get()==2:
-                            xD=D*25.4
-                            xd=d*25.4
-                            xls=ls*25.4
-                            xlo=lo*25.4
-                        if var.get()==1:
-                            xD=D
-                            xd=d
-                            xls=ls
-                            xlo=lo
+                            xD=round(D*25.4,3)
+                            xd=round(d*25.4,3)
+                            xls=round(ls*25.4,3)
+                            xlo=round(lo*25.4,3)
+                        elif var.get()==1:
+                            xD=round(D,3)
+                            xd=round(d,3)
+                            xls=round(ls,3)
+                            xlo=round(lo,3)
                             # fmax=float(txt_fmax.get())
                             # ymax=float(txt_ymax.get())
                             # freelength=float(txt_freelength.get())
                             # solidlength=float(txt_solidlength.get())
+                        else:
+                            messagebox.showinfo('Error 208!', 'Please select the unit')
+
                         # xD=D
                         # xd=d
-                        xNa=Na
+                        flag=1
+                        xNa=round(Na,3)
                         # xls=ls
                         # xlo=lo
-                        xfom=fom
+                        xfom=round(fom,4)
                     counter=counter+1
+
+                    d_ar.append(d)
+                    fom_ar.append(fom)
+
                     f=open("res.txt", "a+")
                     f.write("Wire diameter %f\r\n" % d)
                     f.write("Spring diameter %f\r\n" % D)
@@ -228,7 +247,9 @@ def create_window():
                     f.write("Figure of merit %f\r\n" % fom)
                     ts = time.time()
                     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-                    f.write("____________"+st+"_____________\n")
+                    f.write("_______________________________\n")
+                    f.write(st)
+                    f.write("_______________________________\n")
                     f.close()
                 elif d>1:
                     print("iteration stopped")
@@ -236,41 +257,58 @@ def create_window():
                     break
                 d = d+0.001;
             # print(xD, xd, xNa, xls, xlo, xfom)
-            if var.get()==2:
-                res = "Spring diameter " + str(xD) + "mm\nWire diameter "+str(xd)+"mm\nNa "+str(xNa)+"\nls "+str(xls)+"mm\nlo "+str(xlo)+"mm\nFigure of merit "+str(xfom)
-            if var.get()==1:
-                res = "Spring diameter " + str(xD) + "inch\nWire diameter "+str(xd)+"inch\nNa "+str(xNa)+"\nls "+str(xls)+"inch\nlo "+str(xlo)+"inch\nFigure of merit "+str(xfom)
+            if flag==0:
+                messagebox.showinfo('Error 219!', 'Please try some other values')
+            else:
+                if var.get()==2:
+                    res = "Spring diameter " + str(xD) + "mm\nWire diameter "+str(xd)+"mm\nNa "+str(xNa)+"\nls "+str(xls)+"mm\nlo "+str(xlo)+"mm\nFigure of merit "+str(xfom)
+                if var.get()==1:
+                    res = "Spring diameter " + str(xD) + "inch\nWire diameter "+str(xd)+"inch\nNa "+str(xNa)+"\nls "+str(xls)+"inch\nlo "+str(xlo)+"inch\nFigure of merit "+str(xfom)
+                lbl_res.configure(text= res)
+            # if var.get()==2:
+            #     res = "Spring diameter " + str(xD) + "mm\nWire diameter "+str(xd)+"mm\nNa "+str(xNa)+"\nls "+str(xls)+"mm\nlo "+str(xlo)+"mm\nFigure of merit "+str(xfom)
+            # if var.get()==1:
+            #     res = "Spring diameter " + str(xD) + "inch\nWire diameter "+str(xd)+"inch\nNa "+str(xNa)+"\nls "+str(xls)+"inch\nlo "+str(xlo)+"inch\nFigure of merit "+str(xfom)
 
-            # res = "Spring diameter " + str(xD) + "\nWire diameter "+str(xd)+"\nNa "+str(xNa)+"\nls "+str(xls)+"\nlo "+str(xlo)+"\nFigure of merit "+str(xfom)
-            lbl_res.configure(text= res)
+            # # res = "Spring diameter " + str(xD) + "\nWire diameter "+str(xd)+"\nNa "+str(xNa)+"\nls "+str(xls)+"\nlo "+str(xlo)+"\nFigure of merit "+str(xfom)
+            # lbl_res.configure(text= res)
+        #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^from brain ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-        #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   DESIGN.py DEFINITIONS
         def calcMain_d():
             # def calcMain(fmax, ymax, freelength, solidlength, material, endCondition):
             # if inout in si
+            flag=0
+            print("cnjsd")
             if var_d.get()==2:
-                fmax=float(txt_fmax.get())/4.44822
-                ymax=float(txt_ymax.get())/25.4
-                freelength=float(txt_freelength.get())/25.4
-                solidlength=float(txt_solidlength.get())/25.4
+                fmax=float(txt_d_fmax.get())/4.44822
+                fmin=float(txt_d_fmin.get())/4.44822
+                sprrt=float(txt_d_spr_rate.get())/25.4
             # if input in US
-            if var_d.get()==1:
+            elif var_d.get()==1:
                 fmax=float(txt_d_fmax.get())
-                ymax=float(txt_d_ymax.get())
-                freelength=float(txt_d_freelength.get())
-                solidlength=float(txt_d_solidlength.get())
+                fmin=float(txt_d_fmin.get())
+                sprrt=float(txt_d_spr_rate.get())
+            else:
+                messagebox.showinfo('Error 209!', 'Please select the unit')
+
+                
             #initial guess for 'd'
             d=0.001
             counter = 0
             while d>0:
+                
+                print("while")
+                print(d)
                 # factor of safety # TODO: take input
-                ns = 1.2;
+                ns = 1.5
                 # fixed pg510
                 zeta = 0.15
                 #for fom
-                gama = 1;
-                #for music wire
-                ## TODO: reduce size
+                gama = 1
+                
+                famp = (fmax-fmin)*0.5
+                fmean = (fmax+fmin)*0.5
+              
                 material=combo_d_mat.get();
                 if material=='A228':
                     if d <0.033:
@@ -285,8 +323,8 @@ def create_window():
                     elif d > 0.125:
                         E=28*1000000
                         G=11.6*1000000
-                    A=A228[1]*1000
-                    m=A228[0]
+                    A=A228[1]*1000 #201
+                    m=A228[0]#0.145
                     # E=A228[2]*1000000
                     # G=A228[3]*1000000
                     rc=A228[5]
@@ -326,94 +364,138 @@ def create_window():
                     E=A401[2]*1000000
                     G=A401[3]*1000000
                     rc=A401[5]
-                # A = 201000 ;
-                # relative cost for mausc wire
-                # rc = 2.6;
-                # kpsi inch
-                # m = 0.145;
-                #E = 28.5;
-                # G = 11750000;
-                sut = A/(d**m);
-                ssy = 0.45*sut;
-                alpha = ssy/ns;
-                beta = (8*(1+zeta)*fmax)/(pi*(d**2));
-                C = (2*alpha-beta)/(4*beta) + (((2*alpha-beta)/(4*beta))**2 - (3*alpha)/(4*beta))**(0.5);
-                D = d*C;
-                # kb = (4*C+ 2)/(4*C - 3);
-                # taus = (kb*8*(1+zeta)*fmax*D)/(3.147*(d^3));
-                # OD = D+d;
-                Na = (G*(d**4)*ymax)/(8*(D**3)*fmax);
-                # checking end condition
-                combo_d_end['values']= ('Plain','Plain-Ground','Square-Closed','Square-Ground')
+    
+                sut = A/(d**m)
+                print(sut)
+                ssy = 0.45*sut
+                sse = 0.2*sut
+                ssu = 0.67*sut
+        # combo_d_fail['values']= ('Soderberg','Gerber','Gough','Yield','Goodman')
 
-                endCondition=combo_d_end.get()
-                if endCondition=='Plain':
-                    Nt=Na
-                    ls = d*(Nt+1)
-                if endCondition=='Plain-Ground':
-                    Nt=Na+1
-                    ls = d*Nt
-                if endCondition=='Square-Closed':
-                    Nt=Na+2
-                    ls = d*(Nt+1)
-                if endCondition=='Square-Ground':
-                    Nt=Na+2
-                    ls = d*Nt
+                # critera = combo_d_fail.get();
+                # if critera == Goodman:
+                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                # elif critera ==Yield:
+                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                # elif critera == Gough:
+                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                # elif critera == Gerber:
+                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                # elif critera == Soderberg:
+                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                # else:
+                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
 
-                lo = ls + (1+zeta)*ymax;
-                fom = -rc*gama*(pi**2)*(d**2)*Nt*D*0.25;
+                # temp = ns*4*(1+zeta)*(famp/sse  + fmean/ssy)
+                # eqn  = 4*(x**2)*temp + 2*temp*x-4*x+3
+                eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                c = solve(eqn, x)
+                print(c)
+                for tt in c:
+                    print(tt)
+                    hj=str(tt)
+                    # hj=hj.replace('*','')
+                    # uio=hj.find('I')
+                    # uio-=1
+                    # io=''
+                    # while hj[uio]!='+' and hj[uio]!='-':
+                    #     io+=hj[uio]
+                    #     uio-=1
+                    # io=io[::-1]
+                    # print("io",io)
+                    # if float(io)!=0:
+                    #     print("complex")
+                    if 'I' in hj:
+                        print("complex")
+                    elif (tt >= 4 and tt <= 12):
 
-                if isinstance(C, complex) or isinstance(Na, complex) or isinstance(ls, complex) or isinstance(lo, complex):
-                    print('complex values')
-                elif (C >= 4 and C <= 12 and Na >= 3 and Na <= 15 and ls < solidlength and lo < freelength):
-                    # break
-                    # return D, d, Na, ls, lo, fom
-                    if counter==0:
-                        if var_d.get()==2:
-                            xD=D*25.4
-                            xd=d*25.4
-                            xls=ls*25.4
-                            xlo=lo*25.4
-                        if var_d.get()==1:
-                            xD=D
-                            xd=d
-                            xls=ls
-                            xlo=lo
-                            # fmax=float(txt_fmax.get())
-                            # ymax=float(txt_ymax.get())
-                            # freelength=float(txt_freelength.get())
-                            # solidlength=float(txt_solidlength.get())
-                        # xD=D
-                        # xd=d
-                        xNa=Na
-                        # xls=ls
-                        # xlo=lo
-                        xfom=fom
-                    counter=counter+1
-                    f=open("res.txt", "a+")
-                    f.write("Wire diameter %f\r\n" % d)
-                    f.write("Spring diameter %f\r\n" % D)
-                    f.write("Na %f\r\n" % Na)
-                    f.write("ls %f\r\n" % ls)
-                    f.write("lo %f\r\n" % lo)
-                    f.write("Figure of merit %f\r\n" % fom)
-                    ts = time.time()
-                    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-                    f.write("____________"+st+"_____________\n")
-                    f.close()
-                elif d>1:
+                        C=N(tt)
+                        # print(N(tt))
+                        D = d*C;
+                        # kb = (4*C+ 2)/(4*C - 3);
+                        # taus = (kb*8*(1+zeta)*fmax*D)/(3.147*(d^3));
+                        # OD = D+d;
+                        Na = (G*(d**4))/(8*(D**3)*sprrt);
+                        # checking end condition
+                        combo_d_end['values']= ('Plain','Plain-Ground','Square-Closed','Square-Ground')
+
+                        endCondition=combo_d_end.get()
+                        if endCondition=='Plain':
+                            Nt=Na
+                            ls = d*(Nt+1)
+                        if endCondition=='Plain-Ground':
+                            Nt=Na+1
+                            ls = d*Nt
+                        if endCondition=='Square-Closed':
+                            Nt=Na+2
+                            ls = d*(Nt+1)
+                        if endCondition=='Square-Ground':
+                            Nt=Na+2
+                            ls=d*Nt
+
+                        ymax = fmax/sprrt
+                        lo = ls + (1+zeta)*ymax;
+                        fom = -rc*gama*(pi**2)*(d**2)*Nt*D*0.25;
+
+                        if isinstance(C, complex) or isinstance(Na, complex) or isinstance(ls, complex) or isinstance(lo, complex):
+                            print('complex values')
+                        elif (C >= 4 and C <= 12 and Na >= 3 and Na <= 15):
+                            # break
+                            # return D, d, Na, ls, lo, fom
+                            if counter==0:
+                                if var_d.get()==2:
+                                    xD=round(D*25.4,3)
+                                    xd=round(d*25.4,3)
+                                    xls=round(ls*25.4,3)
+                                    xlo=round(lo*25.4,3)
+                                if var_d.get()==1:
+                                    xD=round(D,3)
+                                    xd=round(d,3)
+                                    xls=round(ls,3)
+                                    xlo=round(lo,3)
+                                    # fmax=float(txt_fmax.get())
+                                    # ymax=float(txt_ymax.get())
+                                    # freelength=float(txt_freelength.get())
+                                    # solidlength=float(txt_solidlength.get())
+                                # xD=D
+                                # xd=d
+                                xNa=round(Na,3)
+                                flag=1
+                                # xls=ls
+                                # xlo=lo
+                                xfom=round(fom,4)
+                            counter=counter+1
+                            f=open("res.txt", "a+")
+                            f.write("Wire diameter %f\r\n" % d)
+                            f.write("Spring diameter %f\r\n" % D)
+                            f.write("Na %f\r\n" % Na)
+                            f.write("ls %f\r\n" % ls)
+                            f.write("lo %f\r\n" % lo)
+                            f.write("Figure of merit %f\r\n" % fom)
+                            ts = time.time()
+                            st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+                            f.write("_______________________________\n")
+                            f.write(st)
+                            f.write("_______________________________\n")
+                            f.close()
+                if d>1:                   
                     print("iteration stopped")
                     # messagebox.showinfo("Sorry! couldn't design the spring\nTIP:try different input")
                     break
-                d = d+0.001;
+                d = d+0.01;
+            print("while end")    
             # print(xD, xd, xNa, xls, xlo, xfom)
-            if var_d.get()==2:
-                res_d = "Spring diameter " + str(xD) + "mm\nWire diameter "+str(xd)+"mm\nNa "+str(xNa)+"\nls "+str(xls)+"mm\nlo "+str(xlo)+"mm\nFigure of merit "+str(xfom)
-            if var_d.get()==1:
-                res_d = "Spring diameter " + str(xD) + "inch\nWire diameter "+str(xd)+"inch\nNa "+str(xNa)+"\nls "+str(xls)+"inch\nlo "+str(xlo)+"inch\nFigure of merit "+str(xfom)
+            if flag==0:
+                messagebox.showinfo('Error 211!', 'Please try some other values')
+            else:
+                if var_d.get()==2:
+                    res_d = "Spring diameter " + str(xD) + "mm\nWire diameter "+str(xd)+"mm\nNa "+str(xNa)+"\nls "+str(xls)+"mm\nlo "+str(xlo)+"mm\nFigure of merit "+str(xfom)
+                if var_d.get()==1:
+                    res_d = "Spring diameter " + str(xD) + "inch\nWire diameter "+str(xd)+"inch\nNa "+str(xNa)+"\nls "+str(xls)+"inch\nlo "+str(xlo)+"inch\nFigure of merit "+str(xfom)
+                lbl_d_res.configure(text= res_d)
 
+# print(round(2.675, 2))
             # res = "Spring diameter " + str(xD) + "\nWire diameter "+str(xd)+"\nNa "+str(xNa)+"\nls "+str(xls)+"\nlo "+str(xlo)+"\nFigure of merit "+str(xfom)
-            lbl_d_res.configure(text= res_d)
         #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^from brain ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
         def callback(event):
@@ -434,16 +516,22 @@ def create_window():
         def rad_d_si():
             lbl_d_ut_fmx.configure(text="N")
             lbl_d_ut_fmin.configure(text="N")
-            lbl_d_ut_ymx.configure(text="mm")
-            lbl_d_ut_freelen.configure(text="mm")
-            lbl_d_ut_solidlen.configure(text="mm")
+            lbl_d_ut_spring_rate.configure(text="N/mm")
+            
 
         def rad_d_us():
             lbl_d_ut_fmx.configure(text="lbf")
             lbl_d_ut_fmin.configure(text="lbf")
-            lbl_d_ut_ymx.configure(text="inch")
-            lbl_d_ut_freelen.configure(text="inch")
-            lbl_d_ut_solidlen.configure(text="inch")
+            lbl_d_ut_spring_rate.configure(text="lbf/inch")
+            
+        def showGraph():
+            plt.plot(d_ar, fom_ar, 'ro')
+            plt.xlabel('Wire diameter')
+            plt.ylabel('FoM')
+            plt.title('FoM vs Wire diameter')
+            plt.show()
+
+
         #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ radio units
         #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         # adding a menu
@@ -560,6 +648,8 @@ def create_window():
 
         b = Button(calcFrame, text="Calculate",command=calcMain)
         b.pack()
+        b = Button(calcFrame, text="Show graph", command=showGraph)
+        b.pack()
         calcFrame.pack(fill=X, pady=20)
 
         lbl = Label(toolbar5, text="Results", width=6,font=("Calibri",10))
@@ -606,14 +696,14 @@ def create_window():
         lbl_d_ut_fmx = Label(toolbar1_d, text="",font=("Arial B", 10), width=6)
         lbl_d_ut_fmx.pack(side=LEFT, padx=2, pady=2)
 
-        lbl_d = Label(toolbar1_d, text="ymax", width=15)
+        lbl_d = Label(toolbar1_d, text="Spring Rate", width=15)
         lbl_d.pack(side=LEFT, padx=2, pady=2)
 
-        txt_d_ymax = Entry(toolbar1_d,width=10)
-        txt_d_ymax.pack(side=LEFT, padx=2, pady=2)
+        txt_d_spr_rate = Entry(toolbar1_d,width=10)
+        txt_d_spr_rate.pack(side=LEFT, padx=2, pady=2)
 
-        lbl_d_ut_ymx = Label(toolbar1_d, text="",font=("Arial B", 10), width=6)
-        lbl_d_ut_ymx.pack(side=LEFT, padx=2, pady=2)
+        lbl_d_ut_spring_rate = Label(toolbar1_d, text="",font=("Arial B", 10), width=6)
+        lbl_d_ut_spring_rate.pack(side=LEFT, padx=2, pady=2)
 
         toolbar1_d.pack(fill=X, padx=70 )
 
@@ -630,20 +720,22 @@ def create_window():
         lbl_d.pack(side=LEFT, padx=2, pady=2)
 
         combo_d_fail = Combobox(toolbar1_1_d,width=10)
-        combo_d_fail['values']= ('Soderberg','Gerber','Gough','Yield')
+        combo_d_fail['values']= ('Soderberg','Gerber','Gough','Yield','Goodman')
         combo_d_fail.current(1) #set the selected item
         combo_d_fail.pack(side=LEFT, padx=2, pady=2)
 
         toolbar1_1_d.pack(fill=X, padx=70 )
 
-        lbl_d = Label(toolbar2_d, text="Free Length", width=15)
+        lbl_d = Label(toolbar2_d, text="Material", width=15)
         lbl_d.pack(side=LEFT, padx=2, pady=2)
 
-        txt_d_freelength = Entry(toolbar2_d,width=10)
-        txt_d_freelength.pack(side=LEFT, padx=2, pady=2)
+        combo_d_mat = Combobox(toolbar2_d,width=5)
+        combo_d_mat['values']= ('A227','A228','A229','A232','A401')
+        combo_d_mat.current(1) #set the selected item
+        combo_d_mat.pack(side=LEFT, padx=2, pady=2)
 
-        lbl_d_ut_freelen = Label(toolbar2_d, text="",font=("Arial B", 10), width=6)
-        lbl_d_ut_freelen.pack(side=LEFT, padx=2, pady=2)
+        lbl_d = Label(toolbar2_d, text="",font=("Arial B", 10), width=9)
+        lbl_d.pack(side=LEFT, padx=2, pady=2)
 
         lbl_d = Label(toolbar2_d, text="End condition", width=15)
         lbl_d.pack(side=LEFT, padx=2, pady=2)
@@ -660,24 +752,24 @@ def create_window():
 
         toolbar2_d.pack(fill=X, padx=70)
 
-        lbl_d = Label(toolbar3_d, text="Solid Length", width=15)
-        lbl_d.pack(side=LEFT, padx=2, pady=2)
+        # lbl_d = Label(toolbar3_d, text="Solid Length", width=15)
+        # lbl_d.pack(side=LEFT, padx=2, pady=2)
 
-        txt_d_solidlength = Entry(toolbar3_d,width=10)
-        txt_d_solidlength.pack(side=LEFT, padx=2, pady=2)
+        # txt_d_solidlength = Entry(toolbar3_d,width=10)
+        # txt_d_solidlength.pack(side=LEFT, padx=2, pady=2)
 
-        lbl_d_ut_solidlen = Label(toolbar3_d, text="",font=("Arial B", 10), width=6)
-        lbl_d_ut_solidlen.pack(side=LEFT, padx=2, pady=2)
+        # lbl_d_ut_solidlen = Label(toolbar3_d, text="",font=("Arial B", 10), width=6)
+        # lbl_d_ut_solidlen.pack(side=LEFT, padx=2, pady=2)
 
-        lbl_d = Label(toolbar3_d, text="Material", width=15)
-        lbl_d.pack(side=LEFT, padx=2, pady=2)
+        # lbl_d = Label(toolbar3_d, text="Material", width=15)
+        # lbl_d.pack(side=LEFT, padx=2, pady=2)
 
-        combo_d_mat = Combobox(toolbar3_d,width=5)
-        combo_d_mat['values']= ('A227','A228','A229','A232','A401')
-        combo_d_mat.current(1) #set the selected item
-        combo_d_mat.pack(side=LEFT, padx=2, pady=2)
+        # combo_d_mat = Combobox(toolbar3_d,width=5)
+        # combo_d_mat['values']= ('A227','A228','A229','A232','A401')
+        # combo_d_mat.current(1) #set the selected item
+        # combo_d_mat.pack(side=LEFT, padx=2, pady=2)
 
-        toolbar3_d.pack(fill=X, padx=70)
+        # toolbar3_d.pack(fill=X, padx=70)
 
         lbl_d = Label(toolbar4_d, text="Output Units", width=15)
         lbl_d.pack(side=LEFT, padx=2, pady=2)
@@ -779,6 +871,52 @@ def create_window_about():
         lbl = Label(aadFrame, wraplength = 600 , font=("Arial", 12),text="He is currently pursuing B.Tech in Mechanical engineering from IIT Tirupati. He is very interested in physics and specially in mechanics. He is also a gaming enthusiast and play a lot of e-games. Currently his favourite game is Dota 2. After his under-grad he wishes to go for a research oriented job in mechanical engineering. He is currently doing a research project with prof. Shree Ram Valluri of University of Western Ontario, Canada.")
         lbl.pack(padx=2, pady=2)
         aadFrame.pack()
+def create_window_help():
+
+        top=Toplevel()
+        top.title("Help ")
+        top.geometry('700x450')
+
+        menu = Menu(top)
+        # add submenu below three lines
+        new_item = Menu(menu,tearoff=0)
+        new_item.add_command(label='New',command=create_window)
+        new_item.add_command(label='Exit', command=top.quit)
+        new_item2 = Menu(menu,tearoff=0)
+        new_item2.add_command(label='Helical',command=create_window)
+        new_item2.add_command(label='Belleville', command=create_window_2)
+        new_item2.add_command(label='Torsion')
+        new_item2.add_command(label='Constant Force')
+        menu.add_cascade(label='File',menu=new_item)
+        menu.add_cascade(label='Start', menu=new_item2)
+        menu.add_command(label='Save')
+        menu.add_command(label='About', command=about_click)
+        menu.add_command(label='Help')
+        top.config(menu=menu)
+
+        aakFrame = Frame(top)
+        imageAak = Frame(top)
+        aadFrame = Frame(top)
+
+        lbl = Label(aakFrame, text="SpriD", font=("Arial B", 16))
+        lbl.pack(padx=2, pady=2)
+
+        lbl = Label(aakFrame, wraplength = 600 , font=("Arial", 12),text="Sprid is a an open source project currently in beta stage. The complete source can be found at GitHub. Please visit the GitHub documentation of Sprid in case you have any queries or if you want to report a BUG. ")
+        lbl.pack(padx=2, pady=20)
+        aakFrame.pack()
+
+        # # TODO: add Image
+        # img = ImageTk.PhotoImage(Image.open("spr2_2.png"))
+        # panel = Label(imageAak, image = img)
+        # panel.pack()
+        # imageAak.pack()
+
+        lbl = Label(aadFrame, text="Open-Source is love", font=("Arial B", 20))
+        lbl.pack(padx=2, pady=20)
+
+        lbl = Label(aadFrame, wraplength = 600 , font=("Arial", 14),text="https://github.com/AakashSYadav/DME")
+        lbl.pack(padx=2, pady=8)
+        aadFrame.pack()
 #*****************************************************************************************************************************
 topFrame = Frame(window)
 topFrame.pack()
@@ -835,7 +973,7 @@ menu.add_cascade(label='File',menu=new_item)
 menu.add_cascade(label='Start', menu=new_item2)
 menu.add_command(label='Save')
 menu.add_command(label='About', command=create_window_about)
-menu.add_command(label='Help')
+menu.add_command(label='Help', command=create_window_help)
 window.config(menu=menu)
 
 window.mainloop()
