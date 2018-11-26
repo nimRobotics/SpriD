@@ -30,6 +30,8 @@ import datetime
 import matplotlib.pyplot as plt
 
 from sympy import *
+import sympy as sy
+
 x = Symbol('x')
 
 window = Tk()
@@ -372,23 +374,23 @@ def create_window():
                 ssu = 0.67*sut
         # combo_d_fail['values']= ('Soderberg','Gerber','Gough','Yield','Goodman')
 
-                # critera = combo_d_fail.get();
-                # if critera == Goodman:
-                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
-                # elif critera ==Yield:
-                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
-                # elif critera == Gough:
-                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
-                # elif critera == Gerber:
-                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
-                # elif critera == Soderberg:
-                #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                critera = combo_d_fail.get();
+                if critera == "Goodman":
+                    eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                elif critera =="Yield":
+                    eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/ssy+fmean/ssy)+3-4*x
+                elif critera == "Gough":
+                    eqn = (((4*x+2)*(8*x)/(pi*d*d))**2)*((famp**2)/(sse**2) + (fmean**2)/(sut**2)) - ((4*x-3)*(4*x-3))/ns
+                elif critera == "Gerber":
+                    eqn = (1+zeta)*(4*x+2)*8*(x/(pi*d*d))*((famp/sse)*(4*x-3)+(1+zeta)*(4*x+2)*8*(x/(pi*d*d))*(fmean/sut))- (4*x-3)*(4*x-3)/ns
+                elif critera == "Soderberg":
+                    eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/ssy)+3-4*x
                 # else:
                 #     eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
 
                 # temp = ns*4*(1+zeta)*(famp/sse  + fmean/ssy)
                 # eqn  = 4*(x**2)*temp + 2*temp*x-4*x+3
-                eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
+                # eqn = (((4*x+2)*8*(1+zeta)*x*ns)/(pi*d*d))*(famp/sse+fmean/sut)+3-4*x
                 c = solve(eqn, x)
                 print(c)
                 for tt in c:
