@@ -491,9 +491,9 @@ def create_window():
                 messagebox.showinfo('Error 211!', 'Please try some other values')
             else:
                 if var_d.get()==2:
-                    res_d = "Spring diameter " + str(xD) + "mm\nWire diameter "+str(xd)+"mm\nNa "+str(xNa)+"\nls "+str(xls)+"mm\nlo "+str(xlo)+"mm\nFigure of merit "+str(xfom)
+                    res_d = "Spring diameter " + str(xD) + "mm\nWire diameter "+str(xd)+"mm\nNt "+str(xNa)+"\nls "+str(xls)+"mm\nlo "+str(xlo)+"mm\nFigure of merit "+str(xfom)
                 if var_d.get()==1:
-                    res_d = "Spring diameter " + str(xD) + "inch\nWire diameter "+str(xd)+"inch\nNa "+str(xNa)+"\nls "+str(xls)+"inch\nlo "+str(xlo)+"inch\nFigure of merit "+str(xfom)
+                    res_d = "Spring diameter " + str(xD) + "inch\nWire diameter "+str(xd)+"inch\nNt "+str(xNa)+"\nls "+str(xls)+"inch\nlo "+str(xlo)+"inch\nFigure of merit "+str(xfom)
                 lbl_d_res.configure(text= res_d)
 
 # print(round(2.675, 2))
