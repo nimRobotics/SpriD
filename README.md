@@ -4,7 +4,7 @@
 Spring designer with complete GUI built on python and tkinter. Can perform computations for both static and dynamic conditions
 
 Note: please install the python missing modules if any.
-https://github.com/AakashSYadav/SpriD/tree/master/Additional
+
 **Authors:** Aakash Yadav
 
 ### Usage
